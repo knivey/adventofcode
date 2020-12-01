@@ -7,7 +7,7 @@ arsort($input);
 foreach($input as $k => $i) {
     foreach (array_slice($input, $k) as $x) {
         if(($i + $x) == 2020) {
-		echo $i * $x . "\n";
+		die($i * $x . "\n");
         }
     }
 }
