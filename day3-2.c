@@ -76,7 +76,12 @@ int main() {
         binprint(lines[lineNum]);
         ++lineNum;
     }
-    unsigned int trees = getit(lines, lineNum, 1, 3);
+    unsigned int trees =
+    getit(lines, lineNum, 1, 1) * 
+    getit(lines, lineNum, 1, 3) *
+    getit(lines, lineNum, 1, 5) *
+    getit(lines, lineNum, 1, 7) *
+    getit(lines, lineNum, 2, 1);
     printf("Hit %u trees!\n", trees);
     fclose(fp);
     return 0;
