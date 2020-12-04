@@ -78,6 +78,7 @@ int main() {
     }
     unsigned int trees = getit(lines, lineNum, 1, 3);
     printf("Hit %u trees!\n", trees);
+    free(lines);
     fclose(fp);
     return 0;
 }
