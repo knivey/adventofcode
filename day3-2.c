@@ -83,6 +83,7 @@ int main() {
     getit(lines, lineNum, 1, 7) *
     getit(lines, lineNum, 2, 1);
     printf("Hit %u trees!\n", trees);
+    free(lines);
     fclose(fp);
     return 0;
 }
