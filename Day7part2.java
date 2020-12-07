@@ -3,7 +3,7 @@ import java.util.regex.*;
 import java.util.*;
 
 public class Day7part2 {
-   private static HashMap<String, HashMap<String, Integer>> bagRules = new HashMap<String, HashMap<String, Integer>>();
+   private static HashMap<String, HashMap<String, Integer>> bagRules = new HashMap<>();
 
    public static void main(String []args) {
       try {
@@ -42,7 +42,7 @@ public class Day7part2 {
 
    public static int bagCount(String bag) {
       int cnt = 0;
-      for(Map.Entry<String, Integer> b : bagRules.get(bag).entrySet()) {
+      for(var b : bagRules.get(bag).entrySet()) {
          cnt += b.getValue();
          cnt += b.getValue() * bagCount(b.getKey());
       }
