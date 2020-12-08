@@ -22,10 +22,9 @@ public class Day8part2 {
          for(int i = 0; i < bootCode.size(); i++) {
             ArrayList<Instruction> code = new ArrayList<>(bootCode);
             Instruction ins = new Instruction(code.get(i));
-            if(ins.name.contentEquals("jmp") && ins.value < 0) {
-               ins.name = "nop";
+            if(ins.op == Op.JMP && ins.value < 0) {
+               ins.op = Op.NOP;
                code.set(i, ins);
-               //System.out.println("changed jmp to nop" + bootCode.get(i) code.get(i));
                if(!tryIt(code)) {
                   break;
                }
@@ -52,10 +51,10 @@ public class Day8part2 {
             break;
          }
          executedLines.add(i);
-         if(ins.name.contentEquals("acc")) {
+         if(ins.op == Op.ACC) {
             acc += ins.value;
          }
-         if(ins.name.contentEquals("jmp")) {
+         if(ins.op == Op.JMP) {
             i += ins.value - 1; //subtract one to account for loop++
          }
       }
@@ -64,23 +63,29 @@ public class Day8part2 {
 
 }
 
+enum Op {
+   ACC,
+   JMP,
+   NOP
+}
+
 class Instruction {
-   public String name;
+   public Op op;
    public Integer value;
-   public Instruction(String name, Integer value) {
-      this.name = name;
+   public Instruction(String op, Integer value) {
+      this.op = Op.valueOf(op.toUpperCase());
       this.value = value;
    }
 
    public Instruction(Instruction ins) {
-      this.name = ins.name;
+      this.op = ins.op;
       this.value = ins.value;
    }
 
    @Override
    public String toString() {
       return "Instruction{" +
-              "name='" + name + '\'' +
+              "op='" + op.toString() + '\'' +
               ", value=" + value +
               '}';
    }
