@@ -19,7 +19,7 @@ public class Day9part1_2 {
 //No idea if we actually needed the entire list loaded for part2
          for(int i = 0; i < allnums.size(); i++) {
             if(i > PRESIZE) {
-               var num = (long)allnums.get(i);
+               var num = allnums.get(i);
                var preamb = new ArrayList<Long>(allnums.subList(i-PRESIZE, i));
                if(!checkNum(num, preamb)) {
                   System.out.printf("%d doesn't check out\n", num);
@@ -39,7 +39,7 @@ public class Day9part1_2 {
    public static boolean checkNum(long num, ArrayList<Long> preamb) {
       for(int i = 0; i < preamb.size(); i++) {
          for(int c = i; c < preamb.size(); c++) {
-            if((long)preamb.get(i) + (long)preamb.get(c) == num) {
+            if(preamb.get(i) + preamb.get(c) == num) {
                return true;
             }
          }
@@ -51,7 +51,7 @@ public class Day9part1_2 {
       long sum = 0;
       int start = 0;
       for(int i = 0; i < allnums.size(); i++) {
-         var n = (long)allnums.get(i);
+         var n = allnums.get(i);
          sum += n;
          while(sum > num && start <= i) {
             sum -= allnums.get(start);
@@ -62,7 +62,7 @@ public class Day9part1_2 {
          //System.out.printf("%d  %s\n", sum, ubl);
          if (num == sum) {
             var subl = allnums.subList(start, i+1);
-            return (long)Collections.max(subl) + (long)Collections.min(subl);
+            return Collections.max(subl) + Collections.min(subl);
          }
       }
       return -1;
