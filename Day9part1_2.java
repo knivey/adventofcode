@@ -37,9 +37,6 @@ public class Day9part1_2 {
    }
 
    public static boolean checkNum(long num, ArrayList<Long> preamb) {
-      if(num / 2 > (long)Collections.max(preamb)) {
-         return false;
-      }
       for(int i = 0; i < preamb.size(); i++) {
          for(int c = i; c < preamb.size(); c++) {
             if((long)preamb.get(i) + (long)preamb.get(c) == num) {
@@ -60,18 +57,13 @@ public class Day9part1_2 {
             sum -= allnums.get(start);
             start++;
          }
-         if(start > i) {
-            sum = 0;
-            start = i;
-         }
+         
          //var ubl = allnums.subList(start, i+1);
          //System.out.printf("%d  %s\n", sum, ubl);
          if (num == sum) {
             var subl = allnums.subList(start, i+1);
             return (long)Collections.max(subl) + (long)Collections.min(subl);
          }
-
-
       }
       return -1;
    }
