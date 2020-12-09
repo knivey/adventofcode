@@ -1,4 +1,4 @@
 AdventOfCode 2020
 
-Colletion of silly scripts for this silly contest.
+Collection of silly scripts for this silly contest.
 
