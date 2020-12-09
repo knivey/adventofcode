@@ -1,22 +1,20 @@
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
+import java.util.stream.*;
 
 public class Day9part1_2 {
     private static int PRESIZE = 25;
-    private static ArrayList<Long> allnums = new ArrayList<>();
+    private static ArrayList<Long> allnums;
 
     public static void main(String[] args) {
         try {
-            FileInputStream fis = new FileInputStream("day9_input.txt");
-            Scanner sc = new Scanner(fis);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                if (line.trim() != "") {
-                    long num = Long.parseUnsignedLong(line.trim());
-                    allnums.add(num);
-                }
-            }
-//No idea if we actually needed the entire list loaded for part2
+            var input = Files.lines(Path.of("day9_input.txt"));
+            allnums = input.mapToLong(Long::parseUnsignedLong)
+                    .boxed()
+                    .collect(Collectors.toCollection(ArrayList::new));
+            input.close();
+            //No idea if we actually needed the entire list loaded for part2
             for (int i = 0; i < allnums.size(); i++) {
                 if (i > PRESIZE) {
                     var num = allnums.get(i);
@@ -29,8 +27,6 @@ public class Day9part1_2 {
                 }
             }
 
-            sc.close();
-            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
