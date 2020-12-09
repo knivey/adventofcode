@@ -53,11 +53,11 @@ public class Day9part1_2 {
       for(int i = 0; i < allnums.size(); i++) {
          var n = (long)allnums.get(i);
          sum += n;
-         while(sum > num) {
+         while(sum > num && start <= i) {
             sum -= allnums.get(start);
             start++;
          }
-         
+
          //var ubl = allnums.subList(start, i+1);
          //System.out.printf("%d  %s\n", sum, ubl);
          if (num == sum) {
