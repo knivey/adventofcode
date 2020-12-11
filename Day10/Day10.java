@@ -14,7 +14,7 @@ public class Day10 {
                 .sorted()
                 .forEach(allnums::add);
         input.close();
-        allnums.add(Collections.max(allnums) + 3);
+        allnums.add(allnums.get(allnums.size()-1) + 3);
         long ones = 0;
         long threes = 0;
         long prev = 0;
@@ -27,6 +27,25 @@ public class Day10 {
         }
 
         System.out.printf("%d ones, %d threes. Answer: %d \n", ones, threes, ones*threes);
+
+        var m = allnums.stream()
+                .collect(
+                        () -> {return new long[] {0,0,0};},
+                        (long[] a, Long c) -> {
+                            if (c-3 == a[0])
+                                a[2]++;
+                            if (c-1 == a[0])
+                                a[1]++;
+                            a[0] = c;
+                        },
+                        (a, b) -> {
+                            a[1] += b[1];
+                            a[2] += b[2];
+                        }
+                );
+
+        System.out.println(m[1]);
+        System.out.println(m[2]);
 
         allnums.add((long)0);
         allnums.add((long)0);
