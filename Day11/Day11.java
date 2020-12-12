@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -6,31 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Day11 {
-    enum tile {
-        FLOOR,
-        FILLED,
-        EMPTY,
-        UNKNOWN;
 
-        public static tile fromString(String y) {
-            return switch (y) {
-                case "L" -> tile.EMPTY;
-                case "." -> tile.FLOOR;
-                case "#" -> tile.FILLED;
-                default -> tile.UNKNOWN;
-            };
-        }
-
-        @Override
-        public String toString() {
-            return switch (this) {
-                case EMPTY -> "L";
-                case FLOOR -> ".";
-                case FILLED -> "#";
-                default -> "?";
-            };
-        }
-    }
 
     private static class Coord {
         int x;
